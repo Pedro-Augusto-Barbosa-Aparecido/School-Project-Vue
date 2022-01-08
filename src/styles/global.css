@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+
+    margin: 0;
+    border: 0;
+
+    box-sizing: border-box;
+
+    font-family: "JetBrains Mono Light", sans-serif;
+
+}
+
+main {
+    height: calc(100vh - 60px - 150px);
+
+    overflow-y: auto;
+
+    width: 100%;
+
+    margin-left: 30px;
+
+}
