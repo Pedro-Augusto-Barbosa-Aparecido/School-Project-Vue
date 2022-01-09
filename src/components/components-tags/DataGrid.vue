@@ -66,18 +66,6 @@ export default {
   mounted() {
     $(".modal").hide();
 
-    $(".bi-trash").click(() => {
-      this.modal_message = "Are you sure that you want delete this data?";
-      $(".modal").fadeIn(1000);
-
-    });
-
-    $(".bi-arrow-down-right-circle-fill").click(() => {
-      this.modal_message = "Are you sure that you want disable this data?";
-      $(".modal").fadeIn(1000);
-
-    });
-
     setTimeout(() => {
       $(".no-data").addClass("no-data-low-color");
       $("#Spinner").fadeIn(1500);
@@ -104,6 +92,18 @@ export default {
       ];
 
       $(".body").fadeIn(2000);
+
+      $(".bi-trash").click(() => {
+        this.modal_message = "Are you sure that you want delete this data?";
+        $(".modal").fadeIn(1000);
+
+      });
+
+      $(".bi-arrow-down-right-circle-fill").click(() => {
+        this.modal_message = "Are you sure that you want disable this data?";
+        $(".modal").fadeIn(1000);
+
+      });
 
     }, 5000);
 
