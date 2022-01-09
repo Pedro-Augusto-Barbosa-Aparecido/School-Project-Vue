@@ -63,6 +63,9 @@ export default {
     }
 
   },
+  watch: {
+
+  },
   mounted() {
     $(".modal").hide();
 
@@ -93,6 +96,9 @@ export default {
 
       $(".body").fadeIn(2000);
 
+    }, 5000);
+
+    setTimeout(() => {
       $(".bi-trash").click(() => {
         this.modal_message = "Are you sure that you want delete this data?";
         $(".modal").fadeIn(1000);
@@ -105,7 +111,7 @@ export default {
 
       });
 
-    }, 5000);
+    }, 5010);
 
     /*
     *
