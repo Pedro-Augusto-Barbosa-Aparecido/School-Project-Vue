@@ -14,7 +14,7 @@
            <label>Continuation: </label>
            <Select @change-value="search_action" name="continuation" :data="[{ text: 'Continue', value: '1' }, { text: 'Not Continue', value: '0' }]" />
         </div>
-        <Button @click="log" id="submit" text="Search" icon_class="bi-search" />
+        <Button @click="searchData" id="submit" text="Search" icon_class="bi-search" />
         <Separator />
         <Button @click="log" id="new-subject" text="New Subject" icon_class="bi-plus-lg" />
         <Button @click="log" id="import-subject" text="Import Subject by Excel" icon_class="bi-file-earmark-plus" />
@@ -22,6 +22,7 @@
      </form>
      <div id="data-grid">
        <DataGrid id="data-table" name="data-table" url_data="#" />
+       <DataGridSpinner id="Spinner-load-data" extra-class="full-spinner" />
      </div>
    </main>
 </template>
@@ -32,7 +33,8 @@ import TextInput from "../components/components-tags/TextInput";
 import Button from "../components/components-tags/Button";
 import Separator from "../components/components-tags/Separator";
 import DataGrid from "../components/components-tags/DataGrid";
-// import $ from "jquery";
+import DataGridSpinner from "../components/components-tags/DataGridSpinner";
+import $ from "jquery";
 
 export default {
   name: "SubjectListPage",
@@ -44,6 +46,7 @@ export default {
 
   },
   components: {
+    DataGridSpinner,
     DataGrid,
     Separator,
     Button,
@@ -57,16 +60,50 @@ export default {
 
     },
 
+    searchData () {
+      $(".full-spinner").show();
+      $("#Spinner-load-data").show();
+
+      setTimeout(() => {
+        $(".full-spinner").hide();
+
+      }, 3000);
+
+    },
+
     log () {
 
-
     }
+
+  },
+  mounted() {
+    $(".full-spinner").hide();
 
   }
 }
 </script>
 
 <style scoped>
+.full-spinner {
+  width: 100%;
+  height: 100vh;
+
+  position: absolute;
+
+  z-index: 999999;
+
+  background-color: #E8E8E8;
+  opacity: .8;
+
+  top: 0;
+  left: 0 !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
 #data-grid {
   margin: 20px 30px;
 

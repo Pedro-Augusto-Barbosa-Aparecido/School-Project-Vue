@@ -1,5 +1,5 @@
 <template>
-  <div style="width: 100%; left: 50%; position: fixed;">
+  <div style="width: 100%; left: 50%; position: fixed;" :class="extraClass">
     <div :id="id" class="spinner-data-grid">
 
     </div>
@@ -13,6 +13,12 @@ export default {
     id: {
       type: String,
       required: true
+
+    },
+
+    extraClass: {
+      type: String,
+      required: false
 
     }
 
