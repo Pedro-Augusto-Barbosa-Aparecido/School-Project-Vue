@@ -25,18 +25,22 @@
       </tr>
       </thead>
       <tbody class="body">
-      <tr v-for="(data, _index) in contentData" :key="_index">
-        <td class="actions">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <i class="bi bi-arrow-down-right-circle-fill"></i>
-          <i class="bi bi-trash"></i>
-        </td>
-        <td v-for="(_data, __index) in data" :key="__index">
-          {{ _data }}
-        </td>
-      </tr>
+        <tr v-for="(data, _index) in contentData" :key="_index">
+          <td class="actions">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <i class="bi bi-arrow-down-right-circle-fill"></i>
+            <i class="bi bi-trash"></i>
+          </td>
+          <td v-for="(_data, __index) in data" :key="__index">
+            {{ _data }}
+          </td>
+        </tr>
       </tbody>
     </table>
+    <div v-if="contentData.length === 0" class="no-data">
+      <DataGridSpinner id="Spinner" />
+      No Data
+    </div>
   </div>
 </template>
 
@@ -44,25 +48,15 @@
 import $ from "jquery";
 
 import "../../styles/modal.css";
+import DataGridSpinner from "./DataGridSpinner";
 
 export default {
   name: "DataGrid",
+  components: {DataGridSpinner},
   data () {
     return {
       head: ["Name", "Curso", "Continuation", "Status", "N° de Cursos"],
-      contentData: [
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-          ["Algoritimo", "ENEM", "No", "Active", "9"],
-      ],
+      contentData: [],
       modal_title: "Alert!",
       modal_message: "Are you sure?"
 
@@ -84,7 +78,52 @@ export default {
 
     });
 
+    setTimeout(() => {
+      $(".no-data").addClass("no-data-low-color");
+      $("#Spinner").fadeIn(1500);
+      $(".body").hide();
 
+    }, 2000);
+
+    setTimeout(() => {
+      $(".no-data").removeClass("no-data-low-color");
+      $("#Spinner").fadeOut(1500);
+
+      this.contentData = [
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+        ["Algoritimo", "ENEM", "No", "Active", "9"],
+      ];
+
+      $(".body").fadeIn(2000);
+
+    }, 5000);
+
+    /*
+    *
+    * [
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+          ["Algoritimo", "ENEM", "No", "Active", "9"],
+      ]
+    *
+    * */
 
   },
   props: {
@@ -120,6 +159,38 @@ export default {
 </script>
 
 <style scoped>
+.no-data-low-color {
+  background-color: #E9E9E9 !important;
+  color: #BBB !important;
+
+}
+
+.no-data {
+  width: auto;
+  height: 70px;
+
+  text-align: center;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-spacing: 2px;
+  border: 2px solid #FFF;
+
+  border-top: 0;
+  border-bottom: 0;
+
+  background-color: #EEE;
+
+  color: #999;
+
+  font-family: Calibri, sans-serif !important;
+  font-size: 20px;
+
+}
+
 .actions {
   display: flex;
 

@@ -58,7 +58,7 @@ export default {
     },
 
     log () {
-      console.log(this.filters_values)
+      
 
     }
 
