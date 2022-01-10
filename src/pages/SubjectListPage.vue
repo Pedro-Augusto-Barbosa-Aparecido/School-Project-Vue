@@ -16,7 +16,9 @@
         </div>
         <Button @click="searchData" id="submit" text="Search" icon_class="bi-search" />
         <Separator />
-        <Button @click="log" id="new-subject" text="New Subject" icon_class="bi-plus-lg" />
+        <router-link to="/admin/subjects/create">
+          <Button @click="log" id="new-subject" text="New Subject" icon_class="bi-plus-lg" />
+        </router-link>
         <Button @click="log" id="import-subject" text="Import Subject by Excel" icon_class="bi-file-earmark-plus" />
         <Button @click="log" id="export-subject" text="Export Subject To Excel" icon_class="bi-file-earmark-excel" />
      </form>
@@ -61,13 +63,16 @@ export default {
     },
 
     searchData () {
-      $(".full-spinner").show();
-      $("#Spinner-load-data").show();
+      if ($("#data-table>tbody").children().length !== 0) {
+        $(".full-spinner").show();
+        $("#Spinner-load-data").show();
 
-      setTimeout(() => {
-        $(".full-spinner").hide();
+        setTimeout(() => {
+          $(".full-spinner").hide();
 
-      }, 3000);
+        }, 3000);
+
+      }
 
     },
 
